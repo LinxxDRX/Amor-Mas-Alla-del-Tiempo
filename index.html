@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Fantasmas love encoded</title>
+  <style>
+    /* Estilos base */
+    body {
+      background: #1d1f20;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Estilos para el huevo */
+    .egg {
+      width: 120px;
+      height: 160px;
+      background: white;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: absolute;
+      left: 35%;
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    .egg ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .egg .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    /* Cara del huevo */
+    .egg .face .eyes {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #1d1f20;
+      border-radius: 50%;
+      top: 50%;
+      left: 25%;
+      box-shadow: 35px 0 0 #1d1f20;
+      animation: blink 3s ease-in-out infinite;
+    }
+
+    .egg .face .smile {
+      position: absolute;
+      width: 30px;
+      height: 10px;
+      border: 4px solid #1d1f20;
+      border-radius: 0 0 50px 50px;
+      border-top: 0;
+      top: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Estilos para el fantasma */
+    .ghost {
+      width: 120px;
+      height: 160px;
+      background: white;
+      border-radius: 60px 60px 0 0;
+      position: absolute;
+      right: 35%;
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    .ghost ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .ghost ul li {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      bottom: -20px;
+    }
+
+    .ghost ul li:nth-child(1) { left: 0; }
+    .ghost ul li:nth-child(2) { left: 40px; }
+    .ghost ul li:nth-child(3) { left: 80px; }
+
+    /* Cara del fantasma */
+    .ghost .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .ghost .face .eyes {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #1d1f20;
+      border-radius: 50%;
+      top: 40%;
+      left: 25%;
+      box-shadow: 35px 0 0 #1d1f20;
+      animation: blink 3s ease-in-out infinite;
+    }
+
+    .ghost .face .smile {
+      position: absolute;
+      width: 30px;
+      height: 10px;
+      border: 4px solid #1d1f20;
+      border-radius: 0 0 50px 50px;
+      border-top: 0;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Corazón */
+    .heart {
+      width: 40px;
+      height: 40px;
+      background: #ff3f3f;
+      position: absolute;
+      transform: rotate(45deg);
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background: #ff3f3f;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before { left: -20px; }
+    .heart::after { top: -20px; }
+
+    /* Sombras */
+    .shadow {
+      width: 80px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -60px;
+    }
+
+    #egg-shadow { left: 35%; }
+    #ghost-shadow { right: 35%; }
+
+    /* Animaciones */
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes blink {
+      0%, 45%, 55%, 100% { transform: scale(1); }
+      50% { transform: scale(0.1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: rotate(45deg) scale(1); }
+      50% { transform: rotate(45deg) scale(1.1); }
+    }
+
+    /* Estilos del poema */
+    .poema-container {
+        max-width: 800px;
+        margin: 8rem auto;
+        font-family: 'Georgia', serif;
+        text-align: center;
+        padding: 3rem;
+        background-color: rgba(240, 240, 240, 0.8);
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        animation: floatPoem 4s ease-in-out infinite;
+    }
+
+    @keyframes floatPoem {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    .titulo {
+        color: #2c3e50;
+        margin-bottom: 3rem;
+        font-size: 2.8rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        animation: glowTitle 2s ease-in-out infinite;
+    }
+
+    @keyframes glowTitle {
+        0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
+        50% { text-shadow: 0 0 15px rgba(44, 62, 80, 0.5); }
+    }
+
+    .estrofa {
+        margin-bottom: 2.5rem;
+        line-height: 2;
+        font-size: 1.3rem;
+        color: #34495e;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+    }
+
+    .estrofa:hover {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Te amo, cariño</h1>
+<div class="container">
+  <div class="egg">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <div class="face">
+        <div class="eyes"></div>
+        <div class="smile"></div>
+        <div class="cheeks"></div>
+        <div class="shine"></div>
+      </div>
+    </ul>
+  </div>
+  <div class="shadow" id="egg-shadow"></div>
+  <div class="heart">
+    <div class="light"></div>
+  </div>
+  <div class="ghost">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div class="face">
+      <div class="eyes"></div>
+      <div class="smile"></div>
+      <div class="cheeks"></div>
+    </div>
+  </div>
+  <div class="shadow" id="ghost-shadow"></div>
+</div>
+
+<div class="poema-container">
+    <h1 class="titulo">Amor Más Allá del Tiempo</h1>
+    
+    <div class="estrofa">
+        Somos dos espíritus unidos por la eternidad,
+        flotando sin rumbo en la inmensidad,
+        ni el tiempo ni el espacio nos pueden separar,
+        pues nuestro amor trasciende la mortalidad.
+    </div>
+
+    <div class="estrofa">
+        En cada rincón oscuro, en cada sombra y luz,
+        nuestras almas danzan una danza sin fin,
+        yo soy tu norte eterno, tú eres mi sur,
+        dos fantasmas amantes en este mundo sin confín.
+    </div>
+
+    <div class="estrofa">
+        No necesitamos cuerpos para sentir amor,
+        ni lágrimas tangibles para expresar emoción,
+        nuestro vínculo es puro, como el más dulce ardor,
+        eterno e inquebrantable, late cual corazón.
+    </div>
+
+    <div class="estrofa">
+        Atravesamos paredes, flotamos entre estrellas,
+        nuestro amor es más fuerte que cualquier realidad,
+        somos dos almas libres, dos historias bellas,
+        destinadas a amarse por toda la eternidad.
+    </div>
+
+    <div class="estrofa">
+        Y aunque el mundo cambie, aunque todo se transforme,
+        seguiremos juntos, amor, más allá del final,
+        porque nuestro amor es único, es enorme,
+        un amor de fantasmas, ¡un amor inmortal!
+    </div>
+</div>
+</body>
+</html>
